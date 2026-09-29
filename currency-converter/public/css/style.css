@@ -1,0 +1,38 @@
+/* Custom CSS that complements Tailwind utilities */
+:root { color-scheme: light dark; }
+
+.field {
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  color: inherit;
+  font-size: 1rem;           /* 16px+ stops iOS from zooming on focus */
+  transition: border-color .15s, background .15s;
+}
+#amount { font-size: 1.5rem; }
+.field:focus { outline: none; border-color: #0f766e; background: #fff; }
+
+@media (prefers-color-scheme: dark) {
+  .field { background: #1e293b; }
+  .field:focus { background: #0f172a; border-color: #2dd4bf; }
+}
+
+/* Swap button rotates when tapped, and turns sideways on mobile layout */
+.swap { transition: transform .25s ease, background-color .15s; }
+.swap.spin { transform: rotate(180deg); }
+
+.pair-chip {
+  border-radius: 9999px;
+  padding: .45rem .9rem;
+  font-size: .875rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  transition: background .15s;
+}
+.pair-chip:hover { background: #cbd5e1; }
+.pair-chip:focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
+@media (prefers-color-scheme: dark) {
+  .pair-chip { background: #1e293b; }
+  .pair-chip:hover { background: #334155; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <title>Currency Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <!-- Tailwind via CDN keeps setup at zero. See README for the CLI build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: "media", theme: { extend: { fontFamily: { sans: ["Manrope", "system-ui", "sans-serif"] } } } };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-slate-100 font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+  <main class="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-4 py-8 sm:py-12">
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Currency Converter</h1>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">Live exchange rates from central banks, via Frankfurter.</p>
+    </header>
+
+    <section class="rounded-3xl bg-white p-5 shadow-xl shadow-slate-900/5 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800 sm:p-7" aria-label="Converter">
+      <label for="amount" class="text-sm font-semibold text-slate-600 dark:text-slate-400">Amount</label>
+      <input id="amount" type="number" inputmode="decimal" min="0" step="any" value="100"
+        class="field mt-1 w-full rounded-2xl px-4 py-3 text-2xl font-extrabold tabular-nums" />
+
+      <div class="mt-5 grid grid-cols-1 items-end gap-3 sm:grid-cols-[1fr_auto_1fr]">
+        <div>
+          <label for="from" class="text-sm font-semibold text-slate-600 dark:text-slate-400">From</label>
+          <select id="from" class="field mt-1 w-full rounded-2xl px-3 py-3 font-semibold"></select>
+        </div>
+
+        <button id="swap" type="button" aria-label="Swap currencies"
+          class="swap mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-teal-700 text-white shadow-md transition hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 active:scale-95">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3" />
+          </svg>
+        </button>
+
+        <div>
+          <label for="to" class="text-sm font-semibold text-slate-600 dark:text-slate-400">To</label>
+          <select id="to" class="field mt-1 w-full rounded-2xl px-3 py-3 font-semibold"></select>
+        </div>
+      </div>
+
+      <div id="result" class="mt-6 rounded-2xl bg-teal-700 p-5 text-white" aria-live="polite">
+        <p id="result-from" class="text-sm text-teal-100">&nbsp;</p>
+        <p id="result-to" class="mt-1 break-words text-3xl font-extrabold tabular-nums sm:text-4xl">Loading…</p>
+        <p id="result-rate" class="mt-3 text-sm text-teal-100">&nbsp;</p>
+      </div>
+
+      <p id="error" class="mt-4 hidden rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-300" role="alert"></p>
+
+      <div class="mt-6">
+        <p class="text-sm font-semibold text-slate-600 dark:text-slate-400">Popular pairs</p>
+        <div id="pairs" class="mt-2 flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+
+    <footer class="mt-6 text-center text-xs text-slate-500">
+      Rates are mid-market and for information only. Data: <a class="underline" href="https://frankfurter.dev/" target="_blank" rel="noopener">frankfurter.dev</a>
+    </footer>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
